@@ -1,0 +1,20 @@
+{
+  "name": "Homework-Bot",
+  "version": "1.0.0",
+  "description": "Slack homework bot",
+  "main": "index.js",
+  "author": "ddinggu",
+  "license": "MIT",
+  "scripts": {
+    "dev": "nodemon index.js",
+    "test": "jest --watchAll",
+    "ui": "./node_modules/.bin/agendash --db=mongodb+srv://Mentoreng:menchop2018!!@cluster0-kxg8k.mongodb.net/Slack --collection=homework"
+  },
+  "dependencies": {
+    "@slack/client": "^4.9.0",
+    "agenda": "^2.0.2",
+    "agendash": "^1.0.0",
+    "dotenv": "^6.2.0",
+    "mongoose": "^5.4.15"
+  }
+}

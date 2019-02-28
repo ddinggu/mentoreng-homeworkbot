@@ -1,0 +1,27 @@
+{
+  "name": "mentoreng-slack-bot",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "ddinggu",
+  "license": "MIT",
+  "scripts": {
+    "dev": "nodemon index.js",
+    "test": "jest --watchAll",
+    "admin": "./node_modules/.bin/agendash --db=mongodb+srv://Mentoreng:menchop2018!!@cluster0-kxg8k.mongodb.net/Slack --collection=homework"
+  },
+  "dependencies": {
+    "@slack/client": "^4.8.0",
+    "agenda": "^2.0.2",
+    "agendash": "^0.4.0",
+    "dotenv": "^6.2.0",
+    "koa": "^2.7.0",
+    "koa-bodyparser": "^4.2.1",
+    "koa-logger": "^3.2.0",
+    "koa-router": "^7.4.0",
+    "superagent": "^4.1.0"
+  },
+  "devDependencies": {
+    "jest": "^24.1.0",
+    "supertest": "^3.4.2"
+  }
+}
