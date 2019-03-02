@@ -1,1 +1,1 @@
-# Mentoreng Slack Homework Alret Bot
+# Slack Homework Alret Bot

@@ -1,4 +1,9 @@
-module.exports = ({ homeworkRouter, agenda }) => {
+import Router from 'koa-router';
+const homeworkRouter = new Router({
+    prefix: '/homework'
+});
+
+export default ({ agenda }) => {
     homeworkRouter.post('/', (ctx, next) => {
         // time: ex) tomorrow at noon
         // homework should string
@@ -7,6 +12,13 @@ module.exports = ({ homeworkRouter, agenda }) => {
 
         // agenda.schedule :: run only once applied time
         agenda.schedule(time, 'register homework', { homework });
-        ctx.body = 'register homework success';
+        ctx.body = {
+            result: true,
+            msg: '과제 등록 성공'
+        }
     });
+
+    return homeworkRouter;
 }
+
+//DEBUG='agenda:*'

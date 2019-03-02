@@ -1,7 +1,12 @@
 const Agenda = require('agenda');
 
-module.exports = () => {
-  const agenda = new Agenda({ db: { address: process.env.MONGODB_URI, collection: 'Homework' } });
+export default () => {
+  const agenda = new Agenda({
+    db: {
+      address: process.env.MONGODB_URI,
+      collection: 'Homework',
+    }
+  });
 
   agenda.on('ready', () => {
     console.log('agenda ready!!');

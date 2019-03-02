@@ -1,15 +1,23 @@
-const Koa = require('koa');
-const Router = require('koa-router');
-const logger = require('koa-logger');
-const bodyParser = require('koa-bodyparser');
+import 'dotenv/config';
+import Koa from 'koa';
+import logger from 'koa-logger';
+import bodyParser from 'koa-bodyparser';
+import HWRegister from '#/agenda/homework'; // 
+// import Agendash from 'agendash';
 const app = new Koa();
-const Agendash = require('agendash');
-require('dotenv').config();
 
-// Regist homework config datas
-const webhook = require('./slack')();
-const agenda = require('./agenda')();
-require('./agenda/homework')({ webhook, agenda });
+// Import slack webhook and agenda modules.
+// Below two modules shouldn't dynamically import because 
+// those are worked currently in this scope. 
+let webhook, agenda;
+import WebhookRegister from '#/slack';
+import AgendaRegister from '#/agenda';
+webhook = WebhookRegister();
+agenda = AgendaRegister();
+HWRegister({ agenda, webhook });
+
+import DBSchema from '#/schema';
+DBSchema();
 
 // Koa default settings
 app.use(bodyParser());
@@ -22,32 +30,28 @@ app.use(async (ctx, next) => {
     } catch (err) {
         ctx.status = err.status || 500;
         ctx.body = err.message;
+        // Error log
         ctx.app.emit('error', err, ctx);
     }
 });
 
-// Error Listener
-app.on('error', (err, ctx) => {
-    console.log('-------------error----------------');
-    console.error(err);
-});
-
 // Regist scheduler admin page
 // https://github.com/agenda/agendash
-app.use('/admin', Agendash(agenda));
+// app.use('/admin', Agendash(agenda));
 
-// Regist routers
-const router = new Router();
-const homeworkRouter = new Router({
-    prefix: '/homework'
-});
-require('./routes/basic')({ router });
-require('./routes/homework')({ homeworkRouter, agenda });
-
-app.use(router.routes());
-app.use(router.allowedMethods());
+// Apply router
+let homeworkRouter;
+import HWRouteRegister from '#/routes/homework';
+import authRouter from '#/routes/auth';
+homeworkRouter = HWRouteRegister({ agenda });
 app.use(homeworkRouter.routes());
 app.use(homeworkRouter.allowedMethods());
+app.use(authRouter.routes());
+app.use(authRouter.allowedMethods());
 
-const server = app.listen(3000);
-module.exports = server;
+const server = app.listen(process.env.PORT || 3001, () => {
+    console.log(`---------open port: ${process.env.PORT || 3001}-------------`);
+});
+
+// Export for tests
+export default server;

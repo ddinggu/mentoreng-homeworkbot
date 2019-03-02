@@ -1,5 +1,5 @@
-const request = require('supertest');
-const server = require('../app.js');
+import request from 'supertest';
+import server from '#/index.js';
 
 beforeAll(async () => {
     console.log('Jest starting!!');

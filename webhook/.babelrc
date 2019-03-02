@@ -1,0 +1,15 @@
+{
+    "presets": [
+        "@babel/preset-env"
+    ],
+    "plugins": [
+        [
+            "babel-plugin-root-import",
+            {
+                // This project use "@slack/client" module, so can't use @ 
+                // https://www.npmjs.com/package/babel-plugin-root-import#custom-root-path-prefix
+                "rootPathPrefix": "#"
+            }
+        ]
+    ]
+}

@@ -5,9 +5,9 @@
   "author": "ddinggu",
   "license": "MIT",
   "scripts": {
-    "dev": "nodemon index.js",
-    "test": "jest --watchAll",
-    "admin": "./node_modules/.bin/agendash --db=mongodb+srv://Mentoreng:menchop2018!!@cluster0-kxg8k.mongodb.net/Slack --collection=homework"
+    "dev": " nodemon --exec babel-node ./index.js",
+    "prod": "pm2 start ecosystem.config.js --env production",
+    "test": "jest --watchAll"
   },
   "dependencies": {
     "@slack/client": "^4.8.0",
@@ -18,9 +18,14 @@
     "koa-bodyparser": "^4.2.1",
     "koa-logger": "^3.2.0",
     "koa-router": "^7.4.0",
+    "mongoose": "^5.4.16",
     "superagent": "^4.1.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.3.4",
+    "@babel/node": "^7.2.2",
+    "@babel/preset-env": "^7.3.4",
+    "babel-plugin-root-import": "^6.1.0",
     "jest": "^24.1.0",
     "supertest": "^3.4.2"
   }

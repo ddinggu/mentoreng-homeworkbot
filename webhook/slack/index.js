@@ -1,6 +1,6 @@
-const { IncomingWebhook } = require('@slack/client');
+import { IncomingWebhook } from '@slack/client'
 
-module.exports = () => {
+export default () => {
     const url = process.env.SLACK_WEBHOOK_URL || '';
 
     if (!url) {
@@ -13,19 +13,3 @@ module.exports = () => {
 
     return webhook;
 }
-
-
-
-
-// require('dotenv').config();
-// const rtm = new RTMClient(process.env.SLACK_TOKEN);
-// const web = new WebClient(process.env.SLACK_TOKEN);
-
-// rtm.start();
-
-// // check token authenticated
-// rtm.on('authenticated', data => {
-//     console.log('On Start Homework bot!');
-// });
-
-// require('./events')({ rtm, web });
