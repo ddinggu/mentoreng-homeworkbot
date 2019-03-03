@@ -40,10 +40,9 @@ app.use(async (ctx, next) => {
 // app.use('/admin', Agendash(agenda));
 
 // Apply router
-let homeworkRouter;
 import HWRouteRegister from '#/routes/homework';
 import authRouter from '#/routes/auth';
-homeworkRouter = HWRouteRegister({ agenda });
+const homeworkRouter = HWRouteRegister({ agenda });
 app.use(homeworkRouter.routes());
 app.use(homeworkRouter.allowedMethods());
 app.use(authRouter.routes());

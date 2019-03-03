@@ -19,6 +19,6 @@ module.exports = ({ agenda, rtm, homeworkChannelId }) => {
 
     agenda.define('send homework', job => {
         const { homework } = job.attrs.data;
-        rtm.sendMessage(homework, 'CD498FEQK');
+        rtm.sendMessage(homework, homeworkChannelId);
     });
 }
