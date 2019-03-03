@@ -9,6 +9,12 @@ export default ({ agenda, webhook }) => {
                 title: '오늘의 과제',
                 text: homework
             }]
-        });
+        })
+            .then(res => {
+                console.log('slack web hook result::', res);
+            })
+            .catch(err => {
+                console.error('slack web hook error::', err)
+            })
     });
 }

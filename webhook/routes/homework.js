@@ -11,7 +11,7 @@ export default ({ agenda }) => {
         console.log({ homework, time });
 
         // agenda.schedule :: run only once applied time
-        agenda.now('register homework', { homework });
+        agenda.schdule(time, 'register homework', { homework });
         ctx.body = {
             result: true,
             msg: '과제 등록 성공'
@@ -20,5 +20,3 @@ export default ({ agenda }) => {
 
     return homeworkRouter;
 }
-
-//DEBUG='agenda:*'
