@@ -12,8 +12,9 @@
   "repository": "https://github.com/ddinggu/mentoreng-homeworkbot/client",
   "scripts": {
     "start-dev": "cross-env NODE_ENV=development electron ./main.js",
-    "pack": "electron-builder --dir",
-    "dist": "electron-builder"
+    "package-all": "electron-builder build -mwl",
+    "package-mac": "electron-builder build --mac",
+    "package-win": "electron-builder build --win --x64"
   },
   "license": "MIT",
   "devDependencies": {
@@ -39,10 +40,23 @@
     "mac": {
       "target": [
         "default"
-      ]
+      ],
+      "icon": "./resources/installer/mentoreng.icns"
     },
     "dmg": {
-      "title": "멘토잉 과제봇"
+      "title": "멘토잉 과제봇",
+      "icon": "./resources/installer/mentoreng.icns"
+    },
+    "win": {
+      "target": [
+        "zip",
+        "nsis"
+      ],
+      "icon": "./resources/installer/Icon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
     }
   }
 }

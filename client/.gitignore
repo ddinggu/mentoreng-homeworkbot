@@ -79,6 +79,11 @@ typings/
 # DynamoDB Local files
 .dynamodb/
 
+# Package lock file
 yarn.lock
 
+# Private Keys
 constants/config.js
+
+# Electron app
+dist
