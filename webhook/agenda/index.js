@@ -16,11 +16,11 @@ export default () => {
     console.log(`Job(슬랙봇) ${job.attrs.name} complete!`);
   });
 
-  agenda.on('success:homework', job => {
-    console.log(`슬랙봇 과제 올리기 성공: ${job.attrs.data.to}`);
+  agenda.on('success:register homework', job => {
+    console.log(`슬랙봇 과제 올리기 성공: ${job.attrs.data}`);
   });
 
-  agenda.on('fail:homework', (err, job) => {
+  agenda.on('fail:register homework', (err, job) => {
     console.log(`슬랙봇 과제 올리기 실패: ${err.message}`);
   });
 
