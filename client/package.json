@@ -1,7 +1,7 @@
 {
   "name": "homework-desktop-app",
   "productName": "멘토잉 과제봇",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "mentoreng homework register in desktop",
   "main": "main.js",
   "author": {
