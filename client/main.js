@@ -12,7 +12,7 @@ const createWindow = () => {
     const defaultWindowOptions = {
         show: false,
         width: 800,
-        height: 600,
+        height: 850,
     };
 
     const startUrl = format({

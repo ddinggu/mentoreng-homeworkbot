@@ -39,6 +39,11 @@ $(document).ready(() => {
                 alert('알 수 없는 에러입니다. 개발자에게 문의해주세요');
             })
     });
+
+    // 
+    $("textarea#inputHomework").on('keydown keyup', function () {
+        $(this).height(1).height($(this).prop('scrollHeight') + 12);
+    });
 });
 
 
