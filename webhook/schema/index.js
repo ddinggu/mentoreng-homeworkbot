@@ -2,27 +2,29 @@ import mongoose from 'mongoose';
 import userSchema from '#/schema/user';
 
 export default () => {
-    const connect = () => {
-        if (process.env.NODE_ENV !== 'production') {
-            mongoose.set('debug', true);
-        }
-
-        mongoose.connect(process.env.MONGODB_URI, {
-        }, err => {
-            err
-                ? console.error('Mongo connection error', err)
-                : console.log('Mongo conncection success');
-        });
+  const connect = () => {
+    if (process.env.NODE_ENV !== 'production') {
+      mongoose.set('debug', true);
     }
 
-    connect();
-    mongoose.connection.on('error', err => {
-        console.error('Mongo connection error', err)
+    mongoose.connect(process.env.MONGODB_URI, {
+    }, err => {
+      if (err) {
+        console.error('Mongo connection error', err);
+      } else {
+        console.log('Mongo conncection success');
+      }
     });
-    mongoose.connection.on('disconnected', () => {
-        console.error('Mongo connection error, reload connection');
-        connect();
-    });
+  };
 
-    userSchema();
+  connect();
+  mongoose.connection.on('error', err => {
+    console.error('Mongo connection error', err);
+  });
+  mongoose.connection.on('disconnected', () => {
+    console.error('Mongo connection error, reload connection');
+    connect();
+  });
+
+  userSchema();
 };

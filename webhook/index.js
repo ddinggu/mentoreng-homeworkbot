@@ -1,52 +1,40 @@
 import 'dotenv/config';
-import Koa from 'koa';
-import logger from 'koa-logger';
-import bodyParser from 'koa-bodyparser';
-import HWRegister from '#/agenda/homework'; // 
+import express from 'express';
+import cors from 'cors';
+import helmet from 'helmet'
+import DBSchema from '#/schema';
 // import Agendash from 'agendash';
-const app = new Koa();
+
+import WebhookRegister from '#/slack';
+import AgendaRegister from '#/agenda';
+import HWRegister from '#/agenda/homework';
+
+import HWRouteRegister from '#/routes/homework';
+import authRouter from '#/routes/auth';
+import imageRouter from '#/routes/image';
+
+const app = express();
+app.use(cors());
+app.use(helmet());
+app.use(express.json());
+app.use(express.urlencoded({ extended: false}));
+// DB connect
+DBSchema();
 
 // Import slack webhook and agenda modules.
 // Below two modules shouldn't dynamically import because 
 // those are worked currently in this scope. 
 let webhook, agenda;
-import WebhookRegister from '#/slack';
-import AgendaRegister from '#/agenda';
 webhook = WebhookRegister();
 agenda = AgendaRegister();
 HWRegister({ agenda, webhook });
 
-import DBSchema from '#/schema';
-DBSchema();
 
-// Koa default settings
-app.use(bodyParser());
-app.use(logger());
-
-// Error Handling
-app.use(async (ctx, next) => {
-    try {
-        await next();
-    } catch (err) {
-        ctx.status = err.status || 500;
-        ctx.body = err.message;
-        // Error log
-        ctx.app.emit('error', err, ctx);
-    }
-});
-
-// Regist scheduler admin page
-// https://github.com/agenda/agendash
-// app.use('/admin', Agendash(agenda));
-
-// Apply router
-import HWRouteRegister from '#/routes/homework';
-import authRouter from '#/routes/auth';
+// regist router
 const homeworkRouter = HWRouteRegister({ agenda });
-app.use(homeworkRouter.routes());
-app.use(homeworkRouter.allowedMethods());
-app.use(authRouter.routes());
-app.use(authRouter.allowedMethods());
+app.use('/homework', homeworkRouter);
+app.use('/auth', authRouter);
+app.use('/image', imageRouter);
 
 const server = app.listen(process.env.PORT || 3001, () => {
     console.log(`---------open port: ${process.env.PORT || 3001}-------------`);
