@@ -1,0 +1,84 @@
+{
+  "name": "Mentoreng_Homework_DesktopApplication",
+  "version": "0.1.1",
+  "private": true,
+  "dependencies": {
+    "axios": "^0.18.0",
+    "react": "^16.7.0",
+    "react-dom": "^16.7.0",
+    "react-flatpickr": "^3.7.1",
+    "react-loading": "^2.0.3",
+    "react-router-dom": "^4.3.1",
+    "react-scripts": "2.1.1",
+    "react-textarea-autosize": "^7.1.0",
+    "semantic-ui-css": "^2.4.1",
+    "semantic-ui-react": "^0.84.0",
+    "styled-components": "^4.1.3"
+  },
+  "scripts": {
+    "start": "nf start -p 3000",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "electron": "electron .",
+    "electron-start": "node src/electron/electron-wait-react",
+    "react-start": "react-scripts start",
+    "build:osx": "npm run build && build --mac"
+  },
+  "main": "./src/electron/electron-starter.js",
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "homepage": "./",
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ],
+  "devDependencies": {
+    "babel-plugin-module-resolver": "^3.2.0",
+    "babel-plugin-root-import": "^6.1.0",
+    "babel-plugin-styled-components": "^1.10.0",
+    "devtron": "^1.4.0",
+    "electron": "^4.0.0",
+    "electron-builder": "^20.38.4",
+    "electron-devtools-installer": "^2.2.4",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-plugin-import": "^2.16.0",
+    "eslint-plugin-jsx-a11y": "^6.2.1",
+    "eslint-plugin-react": "^7.12.4",
+    "foreman": "^3.0.1"
+  },
+  "author": "Mentoreng-developer",
+  "description": "Mentoreng homework register",
+  "build": {
+    "productName": "Homeworker",
+    "appId": "com.electron.Mentoreng",
+    "files": [
+      "build/**/*",
+      "node_modules/**/*"
+    ],
+    "directories": {
+      "buildResources": "resources/installer/",
+      "output": "dist/",
+      "app": "."
+    },
+    "asar": true,
+    "protocols": {
+      "name": "Homeworker",
+      "schemes": [
+        "Mentoreng"
+      ]
+    },
+    "mac": {
+      "target": [
+        "default"
+      ],
+      "icon": "./resources/installer/mentoreng.icns"
+    },
+    "dmg": {
+      "title": "Mentoing-System",
+      "icon": "./resources/installer/mentoreng.icns"
+    }
+  }
+}
