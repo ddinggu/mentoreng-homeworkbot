@@ -18,13 +18,13 @@ export default class Homework extends Component {
   render() {
     return (
       <HomeworkCotainer>
-        <GridContainer columns={2} relaxed="very">
-          <Grid.Column>
+        <GridContainer >
+          <Grid.Column width={7}>
             <HomeworkForm
               onChangeHomeworkForm={this.onChangeHomeworkForm}
             />
           </Grid.Column>
-          <Grid.Column>
+          <Grid.Column width={9}>
             <HomeworkFormResult
               homeworkData={this.state}
             />

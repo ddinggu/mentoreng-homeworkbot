@@ -4,13 +4,11 @@ import {
   Grid, Form, Segment, Button, Image
 } from 'semantic-ui-react';
 import { validateUser } from 'api';
-import { Redirect } from 'react-router-dom';
 
 export default class LoginForm extends Component {
   state = {
     id: null,
     password: null,
-    isVaild: false
   };
 
   onChangeValidForm = attr => e => this.setState({ [attr]: e.target.value });
@@ -18,11 +16,11 @@ export default class LoginForm extends Component {
   validateUser = async () => {
     try {
       const { id, password } = this.state;
+      const { onLogin } = this.props
       const { data } = await validateUser({ id, password });
-      console.log(data);
 
       if (data.result) {
-        this.setState(prevState => ({ isVaild: !prevState.isVaild }));
+        onLogin();
       } else {
         alert(data.msg);
       }
@@ -32,11 +30,6 @@ export default class LoginForm extends Component {
   }
 
   render() {
-    const { isVaild } = this.state;
-
-    if (isVaild) {
-      return (<Redirect to="/homework" />);
-    }
     return (
       <LoginFormContainer>
         <GridContainer

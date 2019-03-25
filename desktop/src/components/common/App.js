@@ -1,13 +1,25 @@
 import React, { Component } from "react";
-import Routes from "../../routes/Routes";
-import { BrowserRouter } from "react-router-dom";
+import LoginForm from './LoginForm';
+import Homework from 'components/Homework';
 
 export default class App extends Component {
+  state = {
+    isLogined: false
+  }
+  
+  onLogin = () => this.setState(prevState => ({isLogined: !prevState.isLogined}));
+
   render() {
+    const { isLogined } = this.state
     return (
-      <BrowserRouter>
-        <Routes />
-      </BrowserRouter>
+      <>
+        {isLogined 
+          ? <Homework />
+          : <LoginForm 
+              onLogin={this.onLogin}
+            />
+        }
+      </>
     );
   }
 }

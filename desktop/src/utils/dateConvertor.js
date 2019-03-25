@@ -1,13 +1,10 @@
-export default function DateToString(pDate) {
-  const yyyy = pDate.getFullYear();
-  const mm = pDate.getMonth() < 9 ? `0${pDate.getMonth() + 1}` : (pDate.getMonth() + 1); // getMonth() is zero-based
-  const dd = pDate.getDate() < 10 ? `0${pDate.getDate()}` : pDate.getDate();
-  const hh = pDate.getHours() < 10 ? `0${pDate.getHours()}` : pDate.getHours();
-  const min = pDate.getMinutes() < 10 ? `0${pDate.getMinutes()}` : pDate.getMinutes();
-  return ''.concat(yyyy).concat('-').concat(mm).concat('-')
-    .concat(dd)
-    .concat(' ')
-    .concat(hh)
+export default(date) => {
+  const yyyy = date.getFullYear() + '년';
+  const mm = (date.getMonth() < 9 ? `0${date.getMonth() + 1}` : (date.getMonth() + 1)) + '월';
+  const dd = (date.getDate() < 10 ? `0${date.getDate()}` : date.getDate()) + '일';
+  const hh = date.getHours() < 10 ? `0${date.getHours()}` : date.getHours(); 
+  const min = date.getMinutes() < 10 ? `0${date.getMinutes()}` : date.getMinutes();
+  return ''.concat(yyyy).concat(' ').concat(mm).concat(' ').concat(dd).concat(' ').concat(hh)
     .concat(':')
     .concat(min);
 }

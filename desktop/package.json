@@ -52,7 +52,7 @@
   "author": "Mentoreng-developer",
   "description": "Mentoreng homework register",
   "build": {
-    "productName": "Homeworker",
+    "productName": "MentorengBot",
     "appId": "com.electron.Mentoreng",
     "files": [
       "build/**/*",
@@ -65,7 +65,7 @@
     },
     "asar": true,
     "protocols": {
-      "name": "Homeworker",
+      "name": "MentorengBot",
       "schemes": [
         "Mentoreng"
       ]
@@ -77,7 +77,7 @@
       "icon": "./resources/installer/mentoreng.icns"
     },
     "dmg": {
-      "title": "Mentoing-System",
+      "title": "MentorengBot",
       "icon": "./resources/installer/mentoreng.icns"
     }
   }

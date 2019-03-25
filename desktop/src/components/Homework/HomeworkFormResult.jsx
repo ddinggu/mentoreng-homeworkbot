@@ -1,8 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import {
-  Button, Segment, Card, Image
-} from 'semantic-ui-react';
+import {Button, Segment, Image, Form} from 'semantic-ui-react';
+import TextArea from 'react-textarea-autosize';
 import dateConvertor from 'utils/dateConvertor';
 import { registHomeWork } from 'api';
 
@@ -18,31 +17,34 @@ export default ({ homeworkData: { time, homework, imageURL } }) => {
         onClick={() => registHomeWork({ time, homework, imageURL })}
         disabled={!isFilledData}
       />
-      <Segment>
-        <Card>
-          <Card.Content header="예약날짜"></Card.Content>
-          <Card.Content description={timeContext}></Card.Content>
-        </Card>
+      <Segment padded color='blue'>
+        <Title>날짜 선택</Title>
+        
+        <text>{timeContext || '날짜가 등록되지 않았습니다'}</text>
+      </Segment>
+
+      <Segment padded color='red'>
+        <Title>과제</Title>
+        <Form>
+          <TextArea 
+            value={homework || '과제가 등록되지 않았습니다'}
+          />
+         </Form>
       </Segment>
 
       <Segment>
-        <Card>
-          <Card.Content header="과제"></Card.Content>
-          <Card.Content description={homework}></Card.Content>
-        </Card>
-      </Segment>
-
-      <Segment>
-        <Card>
-          <Card.Content header="등록 이미지"></Card.Content>
-          {imageURL
+        <Title>등록 이미지</Title>
+        {imageURL
             ? <Image src={imageURL} />
             : null
           }
-        </Card>
       </Segment>
     </Container>
   );
 };
 
 const Container = styled.div``;
+
+const Title = styled.h3`
+  display: block;
+`;
