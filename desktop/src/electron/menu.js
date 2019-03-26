@@ -34,7 +34,7 @@ function buildMenu() {
 
 function buildDarwinTemplate() {
   const subMenuAbout = {
-    label: "MentoingSystem",
+    label: "System",
     submenu: [
       {
         label: "About ElectronReact",

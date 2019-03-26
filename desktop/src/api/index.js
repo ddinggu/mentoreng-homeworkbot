@@ -1,6 +1,5 @@
 import axios from 'axios';
-
-const URL = 'http://localhost:3001';
+import URL from 'config';
 
 export const validateUser = userInfo => axios.post(`${URL}/auth`, userInfo);
 

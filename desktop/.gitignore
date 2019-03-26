@@ -29,5 +29,5 @@ yarn.lock
 # Build
 /dist
 
-
-
+# Key
+src/config
