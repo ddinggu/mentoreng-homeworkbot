@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import LoginForm from './LoginForm';
 import Homework from 'components/Homework';
+import { hot } from 'react-hot-loader';
 
-export default class App extends Component {
+class App extends Component {
   state = {
     isLogined: false
   }
@@ -15,7 +16,7 @@ export default class App extends Component {
       <>
         {isLogined 
           ? <Homework />
-          : <LoginForm 
+          : <LoginForm  
               onLogin={this.onLogin}
             />
         }
@@ -23,3 +24,5 @@ export default class App extends Component {
     );
   }
 }
+
+export default hot(module)(App);
