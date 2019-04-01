@@ -13,3 +13,7 @@ export const registHomeWork = homework => axios.post(`${URL}/homework`, homework
     console.error(err);
     alert('등록 실패! 개발자에게 문의하세요');
   });
+
+export const getHomeworks = () => axios.get(`${URL}/homework/history`);
+
+export const deleteHomework = id => axios.delete(`${URL}/homework/remove/${id}`);

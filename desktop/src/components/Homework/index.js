@@ -1,44 +1,30 @@
-// https://api.slack.com/docs/message-attachments
+import React, { PureComponent } from 'react';
+import HomeworkRegist from './HomeworkRegist';
+import Homeworks from './Homeworks';
+import Header from './Header'
 
-import React, { Component } from 'react';
-import styled from 'styled-components';
-import { Grid } from 'semantic-ui-react';
-import HomeworkForm from './HomeworkForm';
-import HomeworkFormResult from './HomeworkFormResult';
-
-export default class Homework extends Component {
+export default class Homework extends PureComponent {
   state = {
-    homework: '',
-    time: null,
-    imageURL: null
-  };
+    isRegistPage: true 
+  }
 
-  onChangeHomeworkForm = attr => value => this.setState({ [attr]: value });
+  moveRegistPage = () => this.setState({ isRegistPage: true });
+  moveHistoryPage = () => this.setState({ isRegistPage: false });
 
   render() {
+    const { isRegistPage } = this.state;
+
     return (
-      <HomeworkCotainer>
-        <GridContainer >
-          <Grid.Column width={7}>
-            <HomeworkForm
-              onChangeHomeworkForm={this.onChangeHomeworkForm}
-            />
-          </Grid.Column>
-          <Grid.Column width={9}>
-            <HomeworkFormResult
-              homeworkData={this.state}
-            />
-          </Grid.Column>
-        </GridContainer>
-      </HomeworkCotainer>
-    );
+      <>
+        <Header 
+          moveRegistPage={this.moveRegistPage}
+          moveHistoryPage={this.moveHistoryPage}
+        />
+        { isRegistPage 
+          ? <HomeworkRegist /> 
+          : <Homeworks />
+        }
+      </>
+    )
   }
 }
-
-const HomeworkCotainer = styled.div`
-    height: 100%;
-`;
-
-const GridContainer = styled(Grid)`
-  height: 100%;
-`;

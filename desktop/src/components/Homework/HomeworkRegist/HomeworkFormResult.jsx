@@ -2,12 +2,12 @@ import React from 'react';
 import styled from 'styled-components';
 import {Button, Segment, Image, Form} from 'semantic-ui-react';
 import TextArea from 'react-textarea-autosize';
-import dateConvertor from 'utils/dateConvertor';
+import { humanConverter } from 'utils/dateConvertor';
 import { registHomeWork } from 'api';
 
 export default ({ homeworkData: { time, homework, imageURL } }) => {
   const isFilledData = time && homework;
-  const timeContext = time ? dateConvertor(time) : '';
+  const timeContext = time ? humanConverter(time) : '';
 
   return (
     <Container>
