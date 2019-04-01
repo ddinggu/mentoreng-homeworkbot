@@ -1,7 +1,7 @@
 import 'dotenv/config';
 import express from 'express';
 import cors from 'cors';
-import helmet from 'helmet'
+import helmet from 'helmet';
 import DBSchema from '#/schema';
 // import Agendash from 'agendash';
 
@@ -17,14 +17,15 @@ const app = express();
 app.use(cors());
 app.use(helmet());
 app.use(express.json());
-app.use(express.urlencoded({ extended: false}));
+app.use(express.urlencoded({ extended: false }));
 // DB connect
 DBSchema();
 
 // Import slack webhook and agenda modules.
-// Below two modules shouldn't dynamically import because 
-// those are worked currently in this scope. 
-let webhook, agenda;
+// Below two modules shouldn't dynamically import because
+// those are worked currently in this scope.
+let webhook;
+let agenda;
 webhook = WebhookRegister();
 agenda = AgendaRegister();
 HWRegister({ agenda, webhook });
@@ -37,7 +38,7 @@ app.use('/auth', authRouter);
 app.use('/image', imageRouter);
 
 const server = app.listen(process.env.PORT || 3001, () => {
-    console.log(`---------open port: ${process.env.PORT || 3001}-------------`);
+  console.log(`---------open port: ${process.env.PORT || 3001}-------------`);
 });
 
 // Export for tests

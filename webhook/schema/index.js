@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 import userSchema from '#/schema/user';
+import homeworkSchema from '#/schema/homework';
 
 export default () => {
   const connect = () => {
@@ -27,4 +28,5 @@ export default () => {
   });
 
   userSchema();
+  homeworkSchema();
 };
