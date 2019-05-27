@@ -11,8 +11,6 @@
 ### /webhook
 슬랙 SDK([Node Slack SDK](https://github.com/slackapi/node-slack-sdk))의 Incoming Webhook Messaging을 활용하여 예약메시지 서버 구축 
 
-서버: [Koa](https://github.com/koajs) 
-
 예약 스케줄러 : [Agenda](https://github.com/agenda/agenda)
 
 ### /rtm (**당장 사용하지 않음**)
