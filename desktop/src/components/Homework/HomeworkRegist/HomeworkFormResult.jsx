@@ -1,20 +1,30 @@
 import React from 'react';
 import styled from 'styled-components';
-import {Button, Segment, Image, Form} from 'semantic-ui-react';
+import { Button, Segment, Image, Form } from 'semantic-ui-react';
 import TextArea from 'react-textarea-autosize';
-import { humanConverter } from 'utils/dateConvertor';
+import { humanConverter, dateParser } from 'utils/dateConvertor';
 import { registHomeWork } from 'api';
 
 export default ({ homeworkData: { time, homework, imageURL } }) => {
   const isFilledData = time && homework;
   const timeContext = time ? humanConverter(time) : '';
+  const onClickRegistHomeWork = () => {
+    const homeworkdata = {
+      time: dateParser(time),
+      homework,
+      imageURL
+    };
+
+    registHomeWork(homeworkdata);
+    // console.log(homeworkdata);
+  };
 
   return (
     <Container>
       <Button
         content="과제예약"
         primary
-        onClick={() => registHomeWork({ time, homework, imageURL })}
+        onClick={onClickRegistHomeWork}
         disabled={!isFilledData}
       />
       <Segment padded color='blue'>
